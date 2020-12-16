@@ -1,0 +1,19 @@
+{
+  "name": "redux-svelte-store",
+  "version": "0.0.1",
+  "main": "/dist/index.js",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/hackape/redux-svelte-store.git"
+  },
+  "license": "MIT",
+  "types": "/dist/index.d.ts",
+  "scripts": {
+    "build": "tsc",
+    "prepublish": "npm run build"
+  },
+  "devDependencies": {
+    "typescript": "^4.1.2"
+  },
+  "files": ["/dist/index.d.ts", "/dist/index.js"]
+}

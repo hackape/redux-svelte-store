@@ -38,27 +38,27 @@ function unifySelector(args: any[]) {
   throw Error("Invalid selector args");
 }
 
-export function toReadable<A>(store: Store<A>): Readable<A>;
-export function toReadable<A, T extends (state: A) => any>(
+function toReadable<A>(store: Store<A>): Readable<A>;
+function toReadable<A, T extends (state: A) => any>(
   store: Store<A>,
   selector: T
 ): T extends (state: A) => infer R ? Readable<R> : Readable<any>;
-export function toReadable<A, P1 extends keyof A>(store: Store<A>, p1: P1): Readable<A[P1]>;
-export function toReadable<A, P1 extends keyof A, P2 extends keyof A[P1]>(store: Store<A>, p1: P1, p2: P2): Readable<A[P1][P2]>;
-export function toReadable<A, P1 extends keyof A, P2 extends keyof A[P1], P3 extends keyof A[P1][P2]>(
+function toReadable<A, P1 extends keyof A>(store: Store<A>, p1: P1): Readable<A[P1]>;
+function toReadable<A, P1 extends keyof A, P2 extends keyof A[P1]>(store: Store<A>, p1: P1, p2: P2): Readable<A[P1][P2]>;
+function toReadable<A, P1 extends keyof A, P2 extends keyof A[P1], P3 extends keyof A[P1][P2]>(
   store: Store<A>,
   p1: P1,
   p2: P2,
   p3: P3
 ): Readable<A[P1][P2][P3]>;
-export function toReadable<A, P1 extends keyof A, P2 extends keyof A[P1], P3 extends keyof A[P1][P2], P4 extends keyof A[P1][P2][P3]>(
+function toReadable<A, P1 extends keyof A, P2 extends keyof A[P1], P3 extends keyof A[P1][P2], P4 extends keyof A[P1][P2][P3]>(
   store: Store<A>,
   p1: P1,
   p2: P2,
   p3: P3,
   p4: P4
 ): Readable<A[P1][P2][P3][P4]>;
-export function toReadable(store: Store<any>, ...args: any[]): any {
+function toReadable(store: Store<any>, ...args: any[]): any {
   const subscribers = [];
   const selector = unifySelector(args);
   let stop: () => void;
@@ -102,3 +102,5 @@ export function toReadable(store: Store<any>, ...args: any[]): any {
 
   return { subscribe } as any;
 }
+
+export default toReadable;
